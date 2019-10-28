@@ -1,0 +1,41 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\TAEB\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add mongoose
+
+PATH: 
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\TAEB\bin;C:\MongoDB\bin;C:\Program Files\nodejs;C:\Windows\System32;C:\Windows;C:\Windows\System32\Wbem;C:\Program Files\nodejs;C:\Users{yourName}\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\Python3\Scripts;C:\Python3;C:\MongoDB\Scripts;C:\MongoDB;C:\Program Files\Microsoft VS Code\bin;C:\JetBrainsPycharm\PyCharm Community Edition 2019.2.1\bin;C:\Users\TAEB\AppData\Roaming\npm;C:\Users\TAEB\AppData\Local\GitHubDesktop\bin
+
+Yarn version: 
+  1.17.3
+
+Node version: 
+  10.15.3
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com registry.yarnpkg.com:443
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:56:26)
+
+npm manifest: 
+  {
+    "name": "mgt-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.19.0",
+      "express": "^4.17.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
