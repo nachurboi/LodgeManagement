@@ -1,10 +1,45 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom"
+import axios from 'axios'
+
 export default class Signup extends Component {
- constructor(props, ...rest) {
-  super(props, ...rest);
-  this.state = {};
+ constructor(props) {
+  super(props);
+  this.state = {
+    firstname:'',
+    lastname:'',
+    email:'',
+    number:'',
+    password:''
+  };
  }
+async handleSignUp(e){
+   e.preventDefault()
+   await axios.post('http://localhost:1000/register', this.state)
+    .then(res => console.log(res.data.message))
+    .catch(err => console.log(err.message))
+ }
+ //firstname changer
+ handleFirstName(e){
+   this.setState({firstname:e.target.value})
+ }
+ //last name changer
+ handleLastName(e){
+   this.setState({lastname:e.target.value})
+ }
+ //password changer
+ handlePassword(e){
+   this.setState({password:e.target.value})
+ }
+// number changer
+ handleNumber(e){
+  this.setState({number:e.target.value})
+}
+//email changer
+handleEmail(e){
+  this.setState({email:e.target.value})
+}
+
 
  render() {
   return (
@@ -16,22 +51,29 @@ export default class Signup extends Component {
         <div className="form-row mb-4 ">
           <div className="col">
             {/* First name */}
-            <input type="text" id="defaultRegisterFormFirstName" className="form-control" placeholder="First Name" />
+            <input type="text" id="defaultRegisterFormFirstName" className="form-control" placeholder="First Name" value={this.state.firstname} onChange={this.handleFirstName.bind(this)} />
           </div>
           <div className="col">
             {/* Last name */}
-            <input type="text" id="defaultRegisterFormLastName" className="form-control" placeholder="Last name" />
+            <input type="text" id="defaultRegisterFormLastName" className="form-control" placeholder="Last name" 
+             value={this.state.lastname} onChange={this.handleLastName.bind(this)}/>
           </div>
         </div>
         {/* E-mail */}
-        <input type="email" id="defaultRegisterFormEmail" className="form-control mb-4" placeholder="E-mail" />
+        <input type="email" id="defaultRegisterFormEmail" className="form-control mb-4" placeholder="E-mail" 
+        value={this.state.email}
+         onChange={this.handleEmail.bind(this)} />
         {/* Password */}
-        <input type="password" id="defaultRegisterFormPassword" className="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" />
+        <input type="password" id="defaultRegisterFormPassword" className="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" 
+        value={this.state.password} 
+        onChange={this.handlePassword.bind(this)} />
         <small id="defaultRegisterFormPasswordHelpBlock" className="form-text text-muted mb-4">
           At least 8 characters and 1 digit
         </small>
         {/* Phone number */}
-        <input type="text" id="defaultRegisterPhonePassword" className="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock" />
+        <input type="text" id="defaultRegisterPhonePassword" className="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock"
+         value={this.state.number}
+          onChange={this.handleNumber.bind(this)} />
         <small id="defaultRegisterFormPhoneHelpBlock" className="form-text text-muted mb-4">
           Optional - for two step authentication
         </small>
@@ -41,7 +83,7 @@ export default class Signup extends Component {
           <label className="custom-control-label" htmlFor="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
         </div>
         {/* Sign up button */}
-        <button className="btn btn-info my-4 " type="submit">Sign Up</button>
+        <button className="btn btn-info my-4 " onClick={this.handleSignUp.bind(this)} >Sign Up</button>
         {/* Social register */}
         <p>Or Sign Up With:</p>
         <Link to="#" className="mx-2" role="button"><i className="fab fa-facebook-f light-blue-text" /></Link>
