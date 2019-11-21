@@ -27,6 +27,7 @@ export default class Router extends Component {
         <Route path="/register" strict exact={true} component={Signup}/>
 
         <Route path="/gallery" strict exact={true} component ={Gallery}/>
+        
 
     </Switch>
    </div>

@@ -1,10 +1,33 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom"
 import "./Login.css"
+import axios from 'axios'
+
+
   export default class Login extends Component {
- constructor(props, ...rest) {
-  super(props, ...rest);
-  this.state = {};
+ constructor(props) {
+  super(props);
+  this.state = {
+    'email':'',
+    'password':''
+  };
+ }
+
+ async handleLogin(e){
+    e.preventDefault()
+    await axios.post('http://localhost:1000/login',this.state)
+  
+
+
+
+ }
+
+
+ emailHandle(e){
+ this.setState={email:e.target.value}
+ }
+ passwordHandle(e){
+   this.setState={password:e.target.value}
  }
 
  render() {
@@ -24,13 +47,13 @@ import "./Login.css"
                   <div className="input-group-prepend ">
                     <span className="input-group-text bg-info"><i className="fas fa-user" /></span>
                   </div>
-                  <input type="text" className="form-control" placeholder="username" required  id="userlogin"/>
+                  <input type="email" className="form-control" placeholder="username" required  id="userlogin" value={this.state.email} onChange={this.emailHandle.bind(this)}/>
                 </div>
                 <div className="input-group form-group">
                   <div className="input-group-prepend">
                     <span className="input-group-text bg-info"><i className="fas fa-key" /></span>
                   </div>
-                  <input type="password" className="form-control" placeholder="password" required id="passuser" />
+                  <input type="password" className="form-control" placeholder="password" required id="passuser" value={this.state.password} onClick={this.passwordHandle.bind(this)} />
                 </div>
                 <div className="row align-items-center remember text-dark">
                   <input type="checkbox" />Remember Me

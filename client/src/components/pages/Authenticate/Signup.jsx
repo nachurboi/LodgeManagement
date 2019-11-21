@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom"
-import axios from 'axios'
+import axios from 'axios';
 
 export default class Signup extends Component {
  constructor(props) {
@@ -14,7 +14,7 @@ export default class Signup extends Component {
   };
  }
 async handleSignUp(e){
-   e.preventDefault()
+   e.preventDefault() //prevent default behaviour
    await axios.post('http://localhost:1000/register', this.state)
     .then(res => console.log(res.data.message))
     .catch(err => console.log(err.message))
@@ -41,11 +41,15 @@ handleEmail(e){
 }
 
 
+
+
  render() {
   return (
-   <div>
-
-<div className="Container-fluid bg-light ">
+   <div className='mt-4 mb-4'>
+   <div className='row'>
+   <div className=' col-sm-4 col-md-4 col-lg-4 col-xl-4'></div>
+    <div className=' col-sm-4 col-md-4 col-lg-4 col-xl-4'>
+    <div className="Container bg-light ">
 <form className="text-center border border-light p-4" action="#!">
         <p className="h6 mb-4 bg-info rounded text-white p-2">Sign up</p>
         <div className="form-row mb-4 ">
@@ -97,10 +101,12 @@ handleEmail(e){
           <Link to target="_blank"> terms of service</Link>
         </p></form>
         </div>
+        <div className=' col-sm-4 col-md-4 col-lg-4 col-xl-4'></div>
+    </div>
 
 
-
-
+    
+      </div>
    </div>
   );
  }

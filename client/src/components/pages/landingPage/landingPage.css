@@ -2,8 +2,8 @@
  background-color: aquamarine;
 }
 .landing-container{
- background: url('../../assets/img/house15.jpg') no-repeat;
- height:550px;
+ background: url('../../../assets/img/house12.jpg') no-repeat;
+ min-height:500px;
  background-size: cover;
  background-position: center center;
 }
