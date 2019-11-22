@@ -8,23 +8,10 @@ import React, { Component } from 'react'
  render() {
  
   return (
-   <div >
-   
-
-  
+   <div className=''>
       <footer className="page-footer font-small special-color-dark pt-4 bg-info">
-   
-        <div className="container">
-        
-       
-        </div>
-       
         <div className="footer-copyright text-center py-3 text-white">© Taeb Concept 2019 All right reserved: </div>
-       
       </footer>
-     
-   
-
    </div>
   ); 
  }

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import '../landingPage/landingPage.css'
-import ContactCard from '../../contact-card/ContactCard'
+import Contact from '../Contact/Contact'
 import Vision from '../../../components/VisionCard'
-import Slider from '../../../components/Slider'
-import Services from '../../Services'
+import Services from '../../Services';
 
 
 
@@ -12,15 +11,23 @@ import Services from '../../Services'
 export default class LandingPage extends Component {
  constructor(props) {
   super(props);
-  this.state = {};
- }
+  this.state = {
+       vision: true
+  };
+  this.handleVision = this.handleVision.bind(this)
+} 
+ handleVision = ()=>{ const {vision}= this.state; this.setState({vision:!vision})}
 
- render() {
+ render(){
   return (
-   <div className=" ">
-        <div className='row landing-container overflow-hidden'>
+   <div>
+        <div className='row landing-container overflow-hidden text-center'>
             <div className=' col-sm-4 col-md-4 col-lg-4 col-xl-4'>
-                 <Vision/>
+               <button className='btn btn-info mt-4 text-center btn-outline-primary text-white' onClick ={this.handleVision}>Contact Admin
+               </button>
+
+                {this.state.vision?<Vision/> : <Contact/>}
+
             </div>
             <div className='col-sm-8 col-md-8 col-lg-8 col-xl-8'>
             </div> 
@@ -31,6 +38,3 @@ export default class LandingPage extends Component {
   );
  }
 }
-
-
-

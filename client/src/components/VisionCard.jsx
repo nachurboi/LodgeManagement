@@ -4,7 +4,7 @@ import React, { Component } from 'react'
  
   return (
    <div className='mt-5'>
-     <div className="card m-auto bg-info" style={{width: '18rem'}}>
+     <div className="card m-auto bg-info grow " style={{width: '18rem'}}>
         <div className="card-body text-center">
           <h5 className="card-title text-white border-bottom border-dark ">MISSION</h5>
           <p className="card-text text-white">Our Mission Enable new and Confused Students to secure safe and reliable accomodations</p>
