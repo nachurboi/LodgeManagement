@@ -5,16 +5,21 @@ import Router from "./route"
 import {Route, Swicth} from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.css';
 import 'tachyons';
+
  export default class App extends Component {
   constructor(props){
     super(props)
 
     this.state={
-
+     
       
     }
+    
   }
-  
+  handleAddHouse =(e)=>{
+      this.setState(this.state.addhouse.addhouse)
+
+  }
 
 
 

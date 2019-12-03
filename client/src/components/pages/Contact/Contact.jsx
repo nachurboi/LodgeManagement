@@ -20,9 +20,9 @@ export default class Contacts extends Component {
            <div>
         <div>
         <img src={Taiye} width='100px' height="100px" className='rounded shadow-xl mb-2' alt='image pls'/>
-        <p  className='text-white'> Name: Taiwo Hassan Ebietanmi</p>
-        <p><em className='text-white'>Number: +2348136477300</em></p>
-        <p><em  className='text-white'>E-mail: nachurboi@gmail.com</em></p>
+        <p  className='text-white'> Taiwo Hassan Ebietanmi</p>
+        <p><em className='text-white'>+2348136477300</em></p>
+        <p><em  className='text-white'>nachurboi@gmail.com</em></p>
         </div>
         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
         View More Contacts...

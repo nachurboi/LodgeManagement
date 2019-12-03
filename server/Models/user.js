@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const RegSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
  firstname:String,
  lastname:String,
  email:String,
@@ -9,5 +9,6 @@ const RegSchema = new mongoose.Schema({
  
 })
 
-module.exports = mongoose.model('RegTable',RegSchema);
+module.exports = mongoose.model('user',UserSchema);
+
 

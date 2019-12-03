@@ -10,13 +10,23 @@ export default class Signup extends Component {
     lastname:'',
     email:'',
     number:'',
-    password:''
+    password:'',
+    isLoading:false
   };
+  
  }
 async handleSignUp(e){
+
    e.preventDefault() //prevent default behaviour
+   this.setState({isLoading:true})
+
    await axios.post('http://localhost:1000/register', this.state)
-    .then(res => console.log(res.data.message))
+    .then((res) => {
+      this.setState({isLoading:false})
+      alert(res.data.message)
+      this.props.history.push('/login')
+      console.log(res.data.message)
+    })
     .catch(err => console.log(err.message))
  }
  //firstname changer
@@ -44,6 +54,13 @@ handleEmail(e){
 
 
  render() {
+   if(this.state.isLoading===true){
+     return(
+       <div>
+         Loading...
+       </div>
+     );
+   }
   return (
    <div className='mt-4 mb-4'>
    <div className='row'>
@@ -51,6 +68,7 @@ handleEmail(e){
     <div className=' col-sm-4 col-md-4 col-lg-4 col-xl-4'>
     <div className="Container bg-light ">
 <form className="text-center border border-light p-4" action="#!">
+            
         <p className="h6 mb-4 bg-info rounded text-white p-2">Sign up</p>
         <div className="form-row mb-4 ">
           <div className="col">

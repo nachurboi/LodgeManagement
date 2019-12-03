@@ -4,6 +4,7 @@ import '../landingPage/landingPage.css'
 import Contact from '../Contact/Contact'
 import Vision from '../../../components/VisionCard'
 import Services from '../../Services';
+import Slider  from '../../Slider'
 
 
 
@@ -30,6 +31,7 @@ export default class LandingPage extends Component {
 
             </div>
             <div className='col-sm-8 col-md-8 col-lg-8 col-xl-8'>
+            <Slider/>
             </div> 
            
         </div>

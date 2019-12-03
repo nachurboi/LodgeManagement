@@ -5,6 +5,8 @@ import Login from './components/pages/Authenticate/Login.jsx'
 import Dashboard from './components/pages/dashboard/dashboard';
 import Signup from './components/pages/Authenticate/Signup';
 import Gallery from './components/pages/gallery/Gallery.jsx';
+import AddHouseCard from './components/AddHouseCard';
+import Admindashboard from './components/pages/dashboard/Admindashboard'
 
 export default class Router extends Component {
 
@@ -22,11 +24,17 @@ export default class Router extends Component {
 
         <Route path="/signup" strict exact ={true} component={Signup}/>
 
-        <Route path="/home" strict exact ={true} component={Dashboard}/>
+        <Route path="/dashboard" strict exact ={true} component={Dashboard}/>
 
         <Route path="/register" strict exact={true} component={Signup}/>
 
         <Route path="/gallery" strict exact={true} component ={Gallery}/>
+
+        <Route path='/addhouse' strict exact={true} component ={AddHouseCard}/>
+
+        <Route path='/admindashboard' strict exact={true} component ={Admindashboard}/>
+        
+        
         
 
     </Switch>

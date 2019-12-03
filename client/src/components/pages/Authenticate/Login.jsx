@@ -8,26 +8,40 @@ import axios from 'axios'
  constructor(props) {
   super(props);
   this.state = {
-    'email':'',
-    'password':''
+    email:'',
+    password:'',
+    info:''
   };
  }
 
  async handleLogin(e){
     e.preventDefault()
     await axios.post('http://localhost:1000/login',this.state)
-  
+    .then((res) => {
+      console.log(res.data.message) 
+      this.setState({info:res.data.message})
+      if(res.data.message === "Login successful"){
+        console.log(res.data.firstname) 
+        window.localStorage.setItem('token', JSON.stringify(res.data.token))
+        window.localStorage.setItem('firstname', res.data.firstname)
 
-
+      this.props.history.push('/dashboard')
+      
+    }
+    })
 
  }
 
 
  emailHandle(e){
- this.setState={email:e.target.value}
+
+ this.setState({email:e.target.value})
+
+ console.log(this.state.email)
  }
  passwordHandle(e){
-   this.setState={password:e.target.value}
+   this.setState({password:e.target.value})
+   console.log(this.state.password)
  }
 
  render() {
@@ -47,19 +61,20 @@ import axios from 'axios'
                   <div className="input-group-prepend ">
                     <span className="input-group-text bg-info"><i className="fas fa-user" /></span>
                   </div>
-                  <input type="email" className="form-control" placeholder="username" required  id="userlogin" value={this.state.email} onChange={this.emailHandle.bind(this)}/>
+                  <input type="email" className="form-control" placeholder="username" required  id="userlogin"  value ={this.state.email}onChange={this.emailHandle.bind(this)}/>
                 </div>
                 <div className="input-group form-group">
                   <div className="input-group-prepend">
                     <span className="input-group-text bg-info"><i className="fas fa-key" /></span>
                   </div>
-                  <input type="password" className="form-control" placeholder="password" required id="passuser" value={this.state.password} onClick={this.passwordHandle.bind(this)} />
+                  <input type="password" className="form-control" placeholder="password" required id="passuser" value={this.state.password} onChange={this.passwordHandle.bind(this)} />
                 </div>
+                {this.state.info!=""?<div className='alert alert-danger'>{this.state.info}</div>:<div></div>}
                 <div className="row align-items-center remember text-dark">
                   <input type="checkbox" />Remember Me
                 </div>
                 <div className="form-group bg-primary">
-                 <Link to='/dashboard' className="bg-primary"> <input  type ="button"defaultValue="Login" className="btn float-right login_btn bg-success text-white "  id="LoginBtn"/></Link>
+                 <button className=" btn bg-primary float-right login_btn bg-success text-white" onClick={this.handleLogin.bind(this)}>Login</button>
                 </div>
               </form>
             </div>

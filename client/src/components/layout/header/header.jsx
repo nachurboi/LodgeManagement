@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom"
-import bgMyColor from "../header/header.css";
 import NavComponent from '../../NavComponent'
-import SearchBox from '../../SearchBox';
+
 import "./header.css";
 
 
@@ -21,7 +19,6 @@ export default class Header extends Component {
   <div className='sticky-top'>
       <div>
      <NavComponent/>
-     <SearchBox/>
       </div>
   </div>
   );

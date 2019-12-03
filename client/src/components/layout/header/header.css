@@ -1,8 +1,9 @@
 .bgmyColor{
  background-color: lavender;
 }
-a:hover{
- background-color:lightgray;
+a{ 
+ /* background-color:lightgray;
  border-radius: 10px;
  color: blue !important;
+ padding:2px; */
 }
