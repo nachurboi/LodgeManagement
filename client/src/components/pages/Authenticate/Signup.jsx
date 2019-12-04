@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom"
 import axios from 'axios';
+import {Loader} from 'react-loader-spinner'
 
 export default class Signup extends Component {
  constructor(props) {
@@ -57,7 +58,13 @@ handleEmail(e){
    if(this.state.isLoading===true){
      return(
        <div>
-         Loading...
+        <Loader
+         type="Puff"
+         color="#00BFFF"
+         height={100}
+         width={100}
+         timeout={3000} //3 secs
+      />
        </div>
      );
    }

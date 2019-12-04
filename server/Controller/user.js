@@ -35,7 +35,6 @@ exports.userRegistration = async ( req, res)=>{
                 // })
       }
  } catch (error) {
-    console.log('error')
      return res.json({
         
     
