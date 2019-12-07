@@ -69,7 +69,7 @@ import axios from 'axios'
                   </div>
                   <input type="password" className="form-control" placeholder="password" required id="passuser" value={this.state.password} onChange={this.passwordHandle.bind(this)} />
                 </div>
-                {this.state.info!=""?<div className='alert alert-danger'>{this.state.info}</div>:<div></div>}
+                {this.state.info !== ""?<div className='alert alert-danger'>{this.state.info}</div>:<div></div>}
                 <div className="row align-items-center remember text-dark">
                   <input type="checkbox" />Remember Me
                 </div>

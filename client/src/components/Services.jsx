@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import {Link} from 'react-router-dom'
 import 'tachyons';
  
 const Services = () =>{
@@ -27,7 +28,7 @@ const Services = () =>{
            <div className="card-body">
            <div className='card-header text-white border border-dark'style={{fontFamily:'cursive'}}>Link-Ups</div>
              <p className="card-text text-white">We specialize in finding you reliabe  homes at your very convinience </p>
-             <a href="#" className="btn btn-primary">Contact an Agent...</a>
+             <Link href="#" className="btn btn-primary">Contact an Agent...</Link>
            </div>
          </div>
            </div>

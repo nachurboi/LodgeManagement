@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import {Link} from 'react-router-dom';
 
 class SideBar extends Component {
   constructor(props, ...rest) {
@@ -15,7 +16,9 @@ class SideBar extends Component {
         this.setState({username:username})
 
       }else{
-        this.props.history.push('landingpage')
+
+        // this.props.history.push('/landingpage')
+
       }
      
      
@@ -27,9 +30,9 @@ class SideBar extends Component {
         <div className="card text-center m-3 bg-light" style={{width: '18rem'}}>
          <div className='card-header text-white bg-primary text-center shadow'>Welcome,{this.state.username}</div>
          <div className='card-body'>
-         <div className='m-3'> <img src="..." className="card-img-top" alt=" image-here" /></div>
+         <div className='m-3'> <img src="" className="card-img-top" alt="" /></div>
         
-         <div className='btn btn-info text-white btn-block grow'>Add an Apartment</div>
+       <div className='btn btn-info text-white btn-block grow'> <Link className='text-white' to='/login'> Add an Apartment</Link></div> 
          <div className='btn btn-info text-white grow btn-block '> View Apartments</div>
          <div className='btn btn-info text-white grow btn-block '>Profile</div>
         <div className='card-footer'></div>

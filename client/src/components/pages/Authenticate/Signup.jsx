@@ -26,7 +26,7 @@ async handleSignUp(e){
       this.setState({isLoading:false})
       alert(res.data.message)
       this.props.history.push('/login')
-      console.log(res.data.message)
+  
     })
     .catch(err => console.log(err.message))
  }

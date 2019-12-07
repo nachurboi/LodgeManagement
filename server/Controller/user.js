@@ -1,10 +1,10 @@
 const user = require('../Models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require('../Controller/config')
+const config = require('../Controller/config') 
 
 exports.userRegistration = async ( req, res)=>{
- try {
+ try { 
       if(!req.body.firstname || !req.body.lastname || !req.body.password || !req.body.number || !req.body.email){ 
         return res.json({
               message:'please enter the required fields'

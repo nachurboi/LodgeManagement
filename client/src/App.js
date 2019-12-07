@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Header from "./components/layout/header/header"
 import Footer from "./components/layout/footer/Footer"
 import Router from "./route"
-import {Route, Swicth} from "react-router-dom"
+import {Route} from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.css';
 import 'tachyons';
 

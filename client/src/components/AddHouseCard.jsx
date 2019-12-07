@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
-import {Link} from 'react-router-dom'
 import Axios from 'axios';
+
 
 export default class AddHouseCard extends Component {
   constructor(props) {
@@ -9,7 +9,9 @@ export default class AddHouseCard extends Component {
       typeofapartment:'',
       address:'',
       city:'',
-      phonenumber:''
+      number:'',
+      photo:''
+
 
     };
     this.handleAddHouse = this.handleAddHouse.bind(this);
@@ -17,10 +19,14 @@ export default class AddHouseCard extends Component {
     this.handleAddress = this.handleAddress.bind(this);
     this.handleCity= this.handleCity.bind(this);
     this.handleNumber = this.handleNumber.bind(this);
+    // this.handlePhoto = this.handlePhoto.bind(this);
+
+
   }
+
   
     handleApartmentType(e){
-      this.setState({typeofapartment:e.target.value})
+      this.setState({apartment:e.target.value})
       console.log(this.state.typeofapartment)
     }
     handleAddress(e){
@@ -32,14 +38,27 @@ export default class AddHouseCard extends Component {
     handleNumber(e){
       this.setState({phonenumber:e.target.value})
     }
+
+    handlePhoto(e){
+      this.setState({photo:e.target.files[0]})
+      console.log(e.target.value)
+    }
     
     async handleAddHouse(e){
       e.preventDefault();
-      await Axios.post('http://localhost:1000/apartment', this.state)
-      .then((res)=>{
-          alert(<div className=' alert alert-danger'>Apartment Added Successfully</div>)
-      }).catch( err=>{ console.log(err)})
-
+      const formdata = new FormData();
+      formdata.append('photo',this.state.photo);
+      formdata.append("city",this.state.city);
+      formdata.append("phonenumber",this.state.phonenumber);
+      formdata.append("address",this.state.address);
+      formdata.append("apartment",this.state.apartment);
+       await Axios.post('http://localhost:1000/apartment',formdata)
+       .then( res=>{
+        alert(res.data.Message)
+        res.data.Message ==='success'? this.props.history.push('/dashboard'):this.props.history.push('/addhouse')
+       })
+       
+       
     }
 
   render() {
@@ -56,7 +75,7 @@ export default class AddHouseCard extends Component {
             <p className="h6 mb-4 bg-info rounded text-white p-2">Add An Apartment</p>
             <div className="form-row mb-4 ">
               <div className="col">   
-                <input type="text" id="defaultRegisterFormFirstName" className="form-control" placeholder="Type Of Apartment" onChange={this.handleApartmentType} value={this.state.typeofapartment}/>
+                <input type="text" id="defaultRegisterFormFirstName" className="form-control" placeholder="Type Of Apartment" onChange={this.handleApartmentType} value={this.state.apartment}/>
               </div>
               
             </div>
@@ -77,21 +96,21 @@ export default class AddHouseCard extends Component {
             </div>
             
             <div className='row mt-4 mb-4'>
-                    <div className='col-sm-6 border-right'>
-                     <div className="form-group">
-                        <label htmlFor="exampleFormControlFile1" className='text-white text-center border-bottom'>Enter Img 1</label>
-                        <input type="file" className="form-control-file rounded" id="exampleFormControlFile1" />
+                     <div className="form-group" enctype="multipart/form-data">
+                        <label htmlFor="exampleFormControlFile1" className='text-white text-center border-bottom'>Enter Image</label>
+                        <input type="file" className="form-control-file rounded" id="exampleFormControlFile1" onChange={this.handlePhoto.bind(this)}/>
                      </div>
-                  </div>
-                  <div className='col-sm-6'>
+                  
+                  {/* <div className='col-sm-6'>
                     <div className="form-group">
                       <label htmlFor="exampleFormControlFile1" className='text-white text-right border-bottom'>Enter Img 2</label>
                       <input type="file" className="form-control-file" id="exampleFormControlFile1" />
                     </div>
-                  </div>
+                  </div> */}
             </div>
-           
-            <button type="button" class="btn bg-white grow text-primary">Submit</button>
+            <button type="button" 
+            className="btn bg-white grow text-primary" 
+            onClick={this.handleAddHouse}>Submit</button>
             </form>
                  
             </div>

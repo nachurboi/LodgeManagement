@@ -19,7 +19,7 @@ export default class Contacts extends Component {
            <h2 className="card-title text-white border-bottom border-dark ">Contact Admin</h2>
            <div>
         <div>
-        <img src={Taiye} width='100px' height="100px" className='rounded shadow-xl mb-2' alt='image pls'/>
+        <img src={Taiye} width='100px' height="100px" className='rounded shadow-xl mb-2' alt=''/>
         <p  className='text-white'> Taiwo Hassan Ebietanmi</p>
         <p><em className='text-white'>+2348136477300</em></p>
         <p><em  className='text-white'>nachurboi@gmail.com</em></p>

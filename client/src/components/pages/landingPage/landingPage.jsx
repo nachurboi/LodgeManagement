@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import '../landingPage/landingPage.css'
 import Contact from '../Contact/Contact'
 import Vision from '../../../components/VisionCard'
@@ -24,7 +24,7 @@ export default class LandingPage extends Component {
    <div>
         <div className='row landing-container overflow-hidden text-center'>
             <div className=' col-sm-4 col-md-4 col-lg-4 col-xl-4'>
-               <button className='btn btn-info mt-4 text-center btn-outline-primary text-white' onClick ={this.handleVision}>Contact Admin
+               <button className='btn btn-info m-4 text-center btn-outline-primary text-white' onClick ={this.handleVision}>Contact Admin
                </button>
 
                 {this.state.vision?<Vision/> : <Contact/>}
