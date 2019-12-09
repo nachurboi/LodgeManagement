@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom"
 import axios from 'axios';
-import {Loader} from 'react-loader-spinner'
+// import {Loader} from 'react-loader-spinner'
 
 export default class Signup extends Component {
  constructor(props) {
@@ -25,7 +25,11 @@ async handleSignUp(e){
     .then((res) => {
       this.setState({isLoading:false})
       alert(res.data.message)
+      if(res.data.message ==='Account created succesfully'){
       this.props.history.push('/login')
+    }else{
+      this.props.history.push('/signup')
+    }
   
     })
     .catch(err => console.log(err.message))
@@ -58,13 +62,6 @@ handleEmail(e){
    if(this.state.isLoading===true){
      return(
        <div>
-        <Loader
-         type="Puff"
-         color="#00BFFF"
-         height={100}
-         width={100}
-         timeout={3000} //3 secs
-      />
        </div>
      );
    }

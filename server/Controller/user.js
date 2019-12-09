@@ -12,7 +12,7 @@ exports.userRegistration = async ( req, res)=>{
             }else{
                 const hash = bcrypt.hashSync(req.body.password, 10)
                 const body = req.body
-                await Reg.create({
+                await user.create({
                     firstname:body.firstname,
                     lastname:body.lastname,
                     email:body.email,
@@ -22,17 +22,12 @@ exports.userRegistration = async ( req, res)=>{
                 },(err, user)=>{
                     if(err){
                         res.json({error:err})
+                        console.log(err)
                     }
                     res.json({message:"Account created succesfully"})
                 }
                 )
                 
-               
-                // console.log('save')
-
-                // return res.json({ 
-                //     message:'account created successfully'
-                // })
       }
  } catch (error) {
      return res.json({
@@ -66,7 +61,7 @@ exports.userLogin = async (req, res) => {
 
               else{
                   const token = jwt.sign({id:user._id, firstname:user.firstname, lastname:user.lastname, email:user.email}, config.user_secret, {expiresIn:86400})
-                  console.log(user.firstname)
+                //   console.log(user.firstname)
                   res.json({message:'Login successful',firstname:user.firstname, token:token})
                   
               }

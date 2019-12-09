@@ -10,18 +10,26 @@ import axios from 'axios'
   this.state = {
     email:'',
     password:'',
-    info:''
+    info:'',
+    spinner:false
   };
  }
+    componentDidMount(){
+      
+      
+
+    } 
 
  async handleLogin(e){
     e.preventDefault()
+     const{ spinner} = this.state
+    this.setState({spinner:!spinner})
     await axios.post('http://localhost:1000/login',this.state)
     .then((res) => {
       console.log(res.data.message) 
       this.setState({info:res.data.message})
       if(res.data.message === "Login successful"){
-        console.log(res.data.firstname) 
+        // console.log(res.data.firstname) 
         window.localStorage.setItem('token', JSON.stringify(res.data.token))
         window.localStorage.setItem('firstname', res.data.firstname)
 
@@ -47,14 +55,12 @@ import axios from 'axios'
  render() {
   return (
    <div>
-
 <div className="container login-container">
         <div className="d-flex justify-content-center h-100">
+        
           <div className="card  bg-info">
             <div className="card-header text-center bg-info">
-              <h3>Login</h3>
-
-            </div>
+              <h3>Login</h3></div>
             <div className="card-body bg-light">
               <form>
                 <div className="input-group form-group">
@@ -74,7 +80,7 @@ import axios from 'axios'
                   <input type="checkbox" />Remember Me
                 </div>
                 <div className="form-group bg-primary">
-                 <button className=" btn bg-primary float-right login_btn bg-success text-white" onClick={this.handleLogin.bind(this)}>Login</button>
+                 <button className=" btn bg-primary float-right login_btn bg-success text-white" onClick={this.handleLogin.bind(this)}>{this.state.spinner}Login</button>
                 </div>
               </form>
             </div>
@@ -91,7 +97,9 @@ import axios from 'axios'
       </div>
    </div>
   );
+  
  }
+ 
 }
 
 Login.propTypes = {};

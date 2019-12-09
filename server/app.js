@@ -31,7 +31,7 @@ const db=mongoose.connect('mongodb://localhost:27017/lodgemanagement', { useUnif
 
 
 if(db){
-    console.log('database conect')
+    console.log('Database is connected')
 }else{
-    console.log('database no gree connect')
+    console.log('Database is not connected')
 }
