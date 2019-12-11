@@ -5,7 +5,7 @@ const router = express.Router();
 const userController = require('../Controller/user');
 const Apartment =require('../Models/apartment')
 const config = require('../Controller/config')
-const allapartment = require('../Controller/addApartment')
+const apartment = require('../Controller/apartment')
 
 
 // cloudinary set up
@@ -40,10 +40,6 @@ const upload = multer({
 }) 
 
 
-
-
-router.post('/register',userController.userRegistration);
-router.post('/login', userController.userLogin);
 
 
 router.post('/apartment', upload.single('photo'), async (req, res)=> {
@@ -81,9 +77,45 @@ router.post('/apartment', upload.single('photo'), async (req, res)=> {
  
 })
 
+////////// <---------APARTMENT ROUTES-------->////////////////////////
+
+//all apartment route
+router.get('/allapartment',apartment.getAllApartment);
+
+//find one apartment route
+
+router.get('/apartment/:id',apartment.getSingleApartment);
+
+//del apartment route
+router.delete('/del/apartment/:id', apartment.deleteApartment);
+
+// update apartment route
+
+router.put('/update/apartment/:id', apartment.updateApartment);
 
 
-//all house route
-router.get('/allhouse', allapartment.getAllApartment);
+
+
+////////// <---------USER ROUTES-------->////////////////////////
+
+//create a new user
+router.post('/register',userController.userRegistration);
+
+//user login authentication
+router.post('/login', userController.userLogin);
+
+//find one user
+router.get('/user/:id',userController.getSingleUser);
+
+//del user
+router.delete('/del/user/:id', userController.deleteUser);
+
+// update user info
+router.put('/update/user/:id', userController.updateUser);
+
+
+
+
+
 
 module.exports = router;

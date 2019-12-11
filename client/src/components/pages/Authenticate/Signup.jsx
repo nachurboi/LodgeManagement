@@ -25,7 +25,7 @@ async handleSignUp(e){
     .then((res) => {
       this.setState({isLoading:false})
       alert(res.data.message)
-      if(res.data.message ==='Account created succesfully'){
+      if(res.status ==='ok'){
       this.props.history.push('/login')
     }else{
       this.props.history.push('/signup')

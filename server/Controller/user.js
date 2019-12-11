@@ -72,3 +72,47 @@ exports.userLogin = async (req, res) => {
         return console.log(error)
     }
    }
+
+
+   //find one user 
+exports.getSingleUser = async (req,res)=>{
+        const info = await user.findOne({_id:req.params.id})
+        return(res.json({
+            info:info
+        }))
+        
+   }
+
+   // get all user
+exports.getAllUser = async (req,res)=>{
+    const info = await user.find().sort({"_id":-1});
+    return(res.json({
+        info:info
+    }))
+}
+
+//delete single user
+exports.deleteUser = async ( req, res)=>{
+    const info = await user.findOneAndRemove({_id:req.params.id})
+    res.json({
+        info:info,
+        message:"User has been deleted"
+    })
+}
+
+//update a single user information
+exports.updateUser = async (req,res)=>{
+    const info = await user.find({id:req.params.id})
+    if(info){ return res.json({message:'user does not exist'})
+    }else{
+        const body = req.body;
+        info.firstname = body.firstname || info.firstname
+        info.lastname = body.lastname || info.lastname
+        info.email = body.email || info.email
+        info.password = body.password || info.password
+        await info.save();
+        res.json({message:'user info updated successfully'})
+    }
+}
+
+

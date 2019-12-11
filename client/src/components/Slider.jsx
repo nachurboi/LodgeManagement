@@ -57,7 +57,7 @@ export default class Slider extends Component {
         <div className="carousel-inner" role="listbox">
           <div className="carousel-item active">
             <div className="view">
-              <img className="d-block w-100" src={"https://res.cloudinary.com/taiwohassan/image/upload/v1575893079/vunfnywnx2ejelgp1gje.jpg"} alt="First slide" />
+              <img className="d-block w-100" src={"https://res.cloudinary.com/taiwohassan/image/upload/v1575893079/vunfnywnx2ejelgp1gje.jpg"}height='600px' alt="First slide" />
               <div className="mask rgba-black-light" />
             </div>
             <div className="carousel-caption">
@@ -70,7 +70,7 @@ export default class Slider extends Component {
           <div className="carousel-item">
             {/*Mask color*/}
             <div className="view">
-              <img className="d-block w-100" src={"https://res.cloudinary.com/taiwohassan/image/upload/v1575730238/gpgomwhjiroioalh8uzz.jpg"}alt="Second slide" />
+              <img className="d-block w-100" src={"https://res.cloudinary.com/taiwohassan/image/upload/v1575730238/gpgomwhjiroioalh8uzz.jpg" }height='600px'alt="Second slide" />
               <div className="mask rgba-black-light" />
             </div>
             <div className="carousel-caption">
@@ -83,7 +83,7 @@ export default class Slider extends Component {
           <div className="carousel-item">
             {/*Mask color*/}
             <div className="view">
-              <img className="d-block w-100" src={"https://res.cloudinary.com/taiwohassan/image/upload/v1575893079/vunfnywnx2ejelgp1gje.jpg"  } height='500px' alt="Third slide" />
+              <img className="d-block w-100" src={"https://res.cloudinary.com/taiwohassan/image/upload/v1575893079/vunfnywnx2ejelgp1gje.jpg"  } height='600px' alt="Third slide" />
               <div className="mask rgba-black-light" />
             </div>
             <div className="carousel-caption">
