@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 
 
 export default class AddHouseCard extends Component {
@@ -52,7 +52,7 @@ export default class AddHouseCard extends Component {
       formdata.append("phonenumber",this.state.phonenumber);
       formdata.append("address",this.state.address);
       formdata.append("apartment",this.state.apartment);
-       await Axios.post('http://localhost:1000/apartment',formdata)
+       await axios.post('http://localhost:1000/apartment',formdata)
        .then( res=>{
         alert(res.data.Message)
         res.data.Message ==='success'? this.props.history.push('/dashboard'):this.props.history.push('/addhouse')

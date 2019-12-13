@@ -22,18 +22,22 @@ import axios from 'axios'
 
  async handleLogin(e){
     e.preventDefault()
-     const{ spinner} = this.state
+     const {spinner} = this.state
     this.setState({spinner:!spinner})
     await axios.post('http://localhost:1000/login',this.state)
     .then((res) => {
-      console.log(res.data.message) 
       this.setState({info:res.data.message})
+      console.log(res.data)
       if(res.data.message === "Login successful"){
-        // console.log(res.data.firstname) 
+
         window.localStorage.setItem('token', JSON.stringify(res.data.token))
         window.localStorage.setItem('firstname', res.data.firstname)
-
-      this.props.history.push('/dashboard')
+        window.localStorage.setItem("lastname", res.data.lastname)
+        window.localStorage.setItem('id', res.data.id)
+        window.localStorage.setItem('photo',res.data.photo)
+        window.localStorage.setItem('email',res.data.email)
+          
+        this.props.history.push('/dashboard')
       
     }
     })
@@ -41,16 +45,8 @@ import axios from 'axios'
  }
 
 
- emailHandle(e){
-
- this.setState({email:e.target.value})
-
- console.log(this.state.email)
- }
- passwordHandle(e){
-   this.setState({password:e.target.value})
-   console.log(this.state.password)
- }
+ emailHandle(e){this.setState({email:e.target.value})}
+ passwordHandle(e){this.setState({password:e.target.value})}
 
  render() {
   return (

@@ -16,10 +16,8 @@ import Axios from 'axios'
 
 
  componentDidMount(){
-  console.log('message')
  Axios.get('http://localhost:1000/allapartment')
  .then(res=>{
-  //  console.log(res.data.allapartment)
    this.setState({allapartment:res.data.allapartment})
    
   })
@@ -37,13 +35,13 @@ import Axios from 'axios'
   
   return(
         
-    <div className=" grow tc bg-light-green dib br3 ma2 " style={{width: '18rem'}}>
+    <div className=" grow tc bg-info dib br3 ma2 " style={{width: '18rem'}}>
   
         <img src={photo} className="card-img-top" alt=" " />
             <div className="card-body">
-          <p>City: {city}</p>
-          <p>Adress: {address}</p>
-          <p>Contacts: {phonenumber}</p>
+          <p className="text-white">City: {city}</p>
+          <p className="text-white">Adress: {address}</p>
+          <p className="text-white">Contacts: {phonenumber}</p>
               {/* <Link to="" className="btn btn-info btn-block">View more...</Link> */}
             </div>
       </div>

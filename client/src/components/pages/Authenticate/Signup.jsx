@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom"
 import axios from 'axios';
+import { userInfo } from 'os';
 // import {Loader} from 'react-loader-spinner'
 
 export default class Signup extends Component {
@@ -12,27 +13,11 @@ export default class Signup extends Component {
     email:'',
     number:'',
     password:'',
+    photo:'',
+    info:'',
     isLoading:false
   };
   
- }
-async handleSignUp(e){
-
-   e.preventDefault() //prevent default behaviour
-   this.setState({isLoading:true})
-
-   await axios.post('http://localhost:1000/register', this.state)
-    .then((res) => {
-      this.setState({isLoading:false})
-      alert(res.data.message)
-      if(res.status ==='ok'){
-      this.props.history.push('/login')
-    }else{
-      this.props.history.push('/signup')
-    }
-  
-    })
-    .catch(err => console.log(err.message))
  }
  //firstname changer
  handleFirstName(e){
@@ -54,6 +39,53 @@ async handleSignUp(e){
 handleEmail(e){
   this.setState({email:e.target.value})
 }
+//photo selector
+handlePhoto(e){
+  this.setState({photo:e.target.files[0]})
+
+}
+
+async handleSignUp(e){
+
+  e.preventDefault();
+  const formdata = new FormData();
+  formdata.append('firstname',this.state.firstname);
+  formdata.append("lastname",this.state.lastname);
+  formdata.append("email",this.state.email);
+  formdata.append("number",this.state.number);
+  formdata.append("password",this.state.password);
+  formdata.append("photo",this.state.photo);
+  
+  
+  await axios.post('http://localhost:1000/register',formdata)
+   .then( res=>{
+
+    this.setState({info:res.data.message})
+    // alert(<div className='alert alert-success'>{res.data.message}</div>);
+    res.data.message ==='Succesfully saved'? 
+    this.props.history.push('/login'):this.props.history.push('/register')
+   })
+   
+   
+
+
+
+
+
+//    e.preventDefault() //prevent default behaviour
+//   //  this.setState({isLoading:true})
+
+//    await axios.post('http://localhost:1000/register', this.state)
+//     .then((res) => {
+//       // this.setState({isLoading:false})
+//       alert(res.data.message)
+//       if(res.data.message ==='Account created succesfully'){
+//       // this.props.history.push('/login')
+//     }
+//     })
+//     .catch(err => console.log(err.message))
+}
+
 
 
 
@@ -77,16 +109,16 @@ handleEmail(e){
         <div className="form-row mb-4 ">
           <div className="col">
             {/* First name */}
-            <input type="text" id="defaultRegisterFormFirstName" className="form-control" placeholder="First Name" value={this.state.firstname} onChange={this.handleFirstName.bind(this)} />
+            <input type="text" id="defaultRegisterFormFirstName" required className="form-control" placeholder="First Name" value={this.state.firstname} onChange={this.handleFirstName.bind(this)} />
           </div>
           <div className="col">
             {/* Last name */}
-            <input type="text" id="defaultRegisterFormLastName" className="form-control" placeholder="Last name" 
+            <input type="text" required id="defaultRegisterFormLastName" className="form-control" placeholder="Last name" 
              value={this.state.lastname} onChange={this.handleLastName.bind(this)}/>
           </div>
         </div>
         {/* E-mail */}
-        <input type="email" id="defaultRegisterFormEmail" className="form-control mb-4" placeholder="E-mail" 
+        <input type="email" id="defaultRegisterFormEmail" required className="form-control mb-4" placeholder="E-mail" 
         value={this.state.email}
          onChange={this.handleEmail.bind(this)} />
         {/* Password */}
@@ -97,18 +129,26 @@ handleEmail(e){
           At least 8 characters and 1 digit
         </small>
         {/* Phone number */}
-        <input type="text" id="defaultRegisterPhonePassword" className="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock"
+        <input type="text" id="defaultRegisterPhonePassword" required className="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock"
          value={this.state.number}
           onChange={this.handleNumber.bind(this)} />
+          {/*  photo */}
+          <div className="form-group mt-2 mb-2" enctype="multipart/form-data">
+                        <label htmlFor="exampleFormControlFile1" className='text-info text-center border-bottom'>Upload a photo</label>
+                        <input type="file" className="form-control-file rounded" id="exampleFormControlFile1" onChange={this.handlePhoto.bind(this)}/>
+                     </div>
+          {/* photo end */}
         <small id="defaultRegisterFormPhoneHelpBlock" className="form-text text-muted mb-4">
           Optional - for two step authentication
         </small>
         {/* Newsletter */}
-        <div className="custom-control custom-checkbox">
+        {/* <div className="custom-control custom-checkbox">
           <input type="checkbox" className="custom-control-input" id="defaultRegisterFormNewsletter" />
           <label className="custom-control-label" htmlFor="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
-        </div>
+        </div> */}
         {/* Sign up button */}
+        { this.state.info !==''? 
+        <div className='alert alert-danger'>{this.state.info}</div> : <div></div>}
         <button className="btn btn-info my-4 " onClick={this.handleSignUp.bind(this)} >Sign Up</button>
         {/* Social register */}
         <p>Or Sign Up With:</p>
