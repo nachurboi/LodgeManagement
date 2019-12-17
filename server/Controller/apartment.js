@@ -5,10 +5,20 @@ const apartment = require('../Models/apartment')
 // getting all apartment
 
 exports.getAllApartment = async (req,res)=>{
- const allapartment = await apartment.find().sort({date:-1})
- if(!allapartment) return res.json({message:`error users not found`})
 
- res.send({allapartment:allapartment})
+ const info = await apartment.find().sort({date:-1})
+ if(!info) return res.json({message:`error users not found`})
+
+else{
+    const address = info.address
+    
+     res.json({
+         message:info, 
+         address:address
+         
+    
+
+})}
 }
 
 //getting single apartment
@@ -34,6 +44,7 @@ exports.deleteApartment = async ( req, res)=>{
 exports.updateApartment = async (req,res)=>{
  const info = await apartment.find({id:req.params.id})
  if(info){ return res.json({message:'apartment does not exist'})
+ 
  }else{
      const body = req.body;
 

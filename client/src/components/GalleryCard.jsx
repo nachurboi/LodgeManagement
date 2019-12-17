@@ -1,58 +1,67 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
-import Axios from 'axios'
+import axios from 'axios'
+import SearchBox from './SearchBox'
+import ApartmentCard from './ApartmentCard'
+import '../Loaders/loader.css'
 
 
-// import 'tachyons'
+// import 'tachyons' 
 
  export default class GalleryCards extends Component {
  constructor(props) {
   super(props);
   this.state = {
-    allapartment:[]
+    allapartment:[],
+    // searchfield:'',
+    alladdress:[],
+    E:''
+   
     
   };
- }
+  this.handleSearchChange = this.handleSearchChange.bind(this);
+  this.handleSearchClick = this.handleSearchClick.bind(this);
 
+  
+ }
+ handleSearchChange=(e)=>{
+  this.setState({E:e.target.value})
+}
+
+handleSearchClick(e){
+  
+}
 
  componentDidMount(){
- Axios.get('http://localhost:1000/allapartment')
- .then(res=>{
-   this.setState({allapartment:res.data.allapartment})
    
-  })
-}
- render() {
-  const {allapartment} = this.state  
-  return (
-  
-  <div>
-  
-{allapartment ? allapartment.map((apartment_info,index)=>{
 
-  const { _id,address,city,photo,phonenumber} = apartment_info
-
-  
+ axios.get('http://localhost:1000/allapartment')
+ .then(res=>{
   return(
-        
-    <div className=" grow tc bg-info dib br3 ma2 " style={{width: '18rem'}}>
-  
-        <img src={photo} className="card-img-top" alt=" " />
-            <div className="card-body">
-          <p className="text-white">City: {city}</p>
-          <p className="text-white">Adress: {address}</p>
-          <p className="text-white">Contacts: {phonenumber}</p>
-              {/* <Link to="" className="btn btn-info btn-block">View more...</Link> */}
-            </div>
-      </div>
-)
+    this.setState({allapartment:res.data.message})
+    )
+  })
+ }
 
-}):<div>No listed Houses</div>}
-  </div>
-  
-  
-  );
+ render() {
+      const {allapartment,E} = this.state  
+      const filtered_address = allapartment.filter( apartment=>{
+        return( apartment.address.toLowerCase().includes(E.toLowerCase()));
+      })
+      
+      
+      return(
+<div>
+    <div>
+        <SearchBox handleSearchChange={this.handleSearchChange}
+        e={this.state.E} handleSearchClick={this.handleSearchClick}/> 
+    </div>
+    {
+      !allapartment.length?<div className='text-info bolder'><div className='loader bg-success text-center'></div>LOADING APARTMENTS...</div>:
+      (<div>{<ApartmentCard key allapartment={filtered_address}/>}</div>)
+    }
+        
+</div>
+);
  }
 }
 
-GalleryCards.propTypes = {};

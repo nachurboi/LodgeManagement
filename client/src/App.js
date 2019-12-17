@@ -16,10 +16,6 @@ import 'tachyons';
     }
     
   }
-  handleAddHouse =(e)=>{
-      this.setState(this.state.addhouse.addhouse)
-
-  }
 
 
 
@@ -29,7 +25,7 @@ import 'tachyons';
     return (
 
 
-    <div className='overflow-hidden pl-1 pr-1'>
+    <div className='overflow-auto pl-1 pr-1'>
       
       <Route component ={Header}/>
       <Route component ={Router}/>

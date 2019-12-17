@@ -1,25 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class SearchBox extends Component {
- constructor(props, ...rest) {
-  super(props, ...rest);
-  this.state = {};
- }
+const SearchBox = ({handleSearchChange,e} )=>{
 
- render() {
   return (
     <div>
     <nav className="navbar navbar-light bg-info special-color-dark border-top border-white">
         <form className="form-inline">
-          <input className="form-control mr-lg-4 " type="search" placeholder="Subscribe for Notifications" aria-label="Search" />
-          <button className="btn btn-outline-secondary my-2 my-sm-0 text-white" type="submit">Notify Me</button>
+          <input onChange={handleSearchChange} value={e} className="form-control mr-lg-4" type="search" placeholder="Search By Address" aria-label="Search" />
         </form>
       </nav>
-
    </div>
   );
- }
 }
 
 
- 
+ export default SearchBox;

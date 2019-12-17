@@ -5,7 +5,7 @@ const user = require('../Models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../Controller/config'); 
-const router = express.Router();
+// const router = express.Router();
    
    //cloudinary set up
 //  cloudinary.config({
@@ -173,10 +173,11 @@ exports.userLogin = async (req, res) => {
                   let email = user.email
                   let photo = user.photo
                   let lastname = user.lastname
+                  let number= user.number
                   
                   res.json({message:'Login successful', 
                   token:token, id:id, firstname:firstname,
-                  email:email,photo:photo,lastname:lastname})
+                  email:email,photo:photo,lastname:lastname,number:number})
                   
               }
         
@@ -192,7 +193,7 @@ exports.userLogin = async (req, res) => {
 exports.getSingleUser = async (req,res)=>{
         const info = await user.findOne({_id:req.params.id})
         return(res.json({
-            // info:info,
+            message:info 
             // info_id:info._id,
             // info_email:info.email,
             // info_firstname:info.firstname,
@@ -208,7 +209,7 @@ exports.getAllUser = async (req,res)=>{
     const info = await user.find().sort({"_id":-1});
     
     return(res.json({
-        info:info
+        message:info
     }))
 }
 

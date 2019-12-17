@@ -6,11 +6,13 @@ export default class AddHouseCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      typeofapartment:'',
+      message:'',
+      apartment:'',
       address:'',
       city:'',
-      number:'',
-      photo:''
+      phonenumber:'',
+      photo:'',
+      isLoading:false
 
 
     };
@@ -19,6 +21,7 @@ export default class AddHouseCard extends Component {
     this.handleAddress = this.handleAddress.bind(this);
     this.handleCity= this.handleCity.bind(this);
     this.handleNumber = this.handleNumber.bind(this);
+    // this.handleLoader = this.handleLoader.bind(this)
     // this.handlePhoto = this.handlePhoto.bind(this);
 
 
@@ -27,7 +30,7 @@ export default class AddHouseCard extends Component {
   
     handleApartmentType(e){
       this.setState({apartment:e.target.value})
-      console.log(this.state.typeofapartment)
+    
     }
     handleAddress(e){
       this.setState({address:e.target.value})
@@ -43,19 +46,25 @@ export default class AddHouseCard extends Component {
       this.setState({photo:e.target.files[0]})
       console.log(e.target.value)
     }
+    // handleLoader(){
+    //   this.setState({isLoading:true})
+    // }
     
     async handleAddHouse(e){
       e.preventDefault();
+      this.setState({isLoading:true})
+
       const formdata = new FormData();
       formdata.append('photo',this.state.photo);
       formdata.append("city",this.state.city);
       formdata.append("phonenumber",this.state.phonenumber);
       formdata.append("address",this.state.address);
-      formdata.append("apartment",this.state.apartment);
+      formdata.append("apartment",this.state.typeofapartment);
        await axios.post('http://localhost:1000/apartment',formdata)
        .then( res=>{
-        alert(res.data.Message)
-        res.data.Message ==='success'? this.props.history.push('/dashboard'):this.props.history.push('/addhouse')
+        this.setState({message:res.data.message})
+        res.data.message ==='APARTMENT REGISTERED SUCCESSFULLY'? this.props.history.push('/dashboard'):this.props.history.push('/addhouse')
+        this.setState({isLoading:false})
        })
        
        
@@ -69,8 +78,8 @@ export default class AddHouseCard extends Component {
           <div className='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'></div>
           <div className='col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6'>
            <div className='m-4'>
-           <div className =' mt-4 mb-4 m-auto bg-info' style={{ width:'40rem'}}>              
-           <form className="text-center border border-light p-4" action="#!">
+           <div className =' mt-4 mb-4 m-auto bg-info rounded'>              
+           <form className="text-center border border-light p-4 rounded" action="#!">
             
             <p className="h6 mb-4 bg-info rounded text-white p-2">Add An Apartment</p>
             <div className="form-row mb-4 ">
@@ -89,6 +98,7 @@ export default class AddHouseCard extends Component {
                 <input type="text" id="defaultRegisterFormFirstName" className="form-control" placeholder="City" value={this.state.city} onChange={this.handleCity}/>
               </div>
             </div>
+            
             <div className="form-row mb-4 ">
               <div className="col">   
                 <input type="text" id="defaultRegisterFormFirstName" className="form-control" placeholder="Phone Number"  value={this.state.phonenumber} onChange={this.handleNumber}/>
@@ -97,24 +107,21 @@ export default class AddHouseCard extends Component {
             
             <div className='row mt-4 mb-4'>
                      <div className="form-group" enctype="multipart/form-data">
-                        <label htmlFor="exampleFormControlFile1" className='text-white text-center border-bottom'>Enter Image</label>
-                        <input type="file" className="form-control-file rounded" id="exampleFormControlFile1" onChange={this.handlePhoto.bind(this)}/>
+                        <label htmlFor="exampleFormControlFile1" className='text-white text-center text-bold decoration-none shadow'>SELECT AN IMAGE</label>
+                        <input type="file" className="form-control-file border shadow col" id="exampleFormControlFile1" onChange={this.handlePhoto.bind(this)}/>
                      </div>
-                  
-                  {/* <div className='col-sm-6'>
-                    <div className="form-group">
-                      <label htmlFor="exampleFormControlFile1" className='text-white text-right border-bottom'>Enter Img 2</label>
-                      <input type="file" className="form-control-file" id="exampleFormControlFile1" />
-                    </div>
-                  </div> */}
             </div>
             <button type="button" 
             className="btn bg-white grow text-primary" 
-            onClick={this.handleAddHouse}>Submit</button>
-            </form>
-                 
+            onClick={this.handleAddHouse}>
+            {this.state.isLoading?<div className='loader'>Loading</div>:"Submit"}
+            </button>
+            </form>         
             </div>
+
            </div>
+           {this.state.message?<div className='alert bg-danger text-center text-white mt-3'>
+              {this.state.message.toUpperCase()}</div>:<div></div>}
           </div>
           <div className='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'></div>
         </div>

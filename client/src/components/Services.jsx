@@ -1,52 +1,59 @@
 import React from 'react'
+import './services.css'
 import {Link} from 'react-router-dom'
-import 'tachyons';
  
-const Services = () =>{
-  
- 
- return(
- <div className='bg-info'>
-  
-      <div className = 'container mb-3 mt-3'>
-      <div className='row m-2'>
-      <h2 className='text-white text-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>Our Services</h2>
-      </div>
-         <div className ='row text-center pb-3 '> 
-           <div className = 'col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'>
-               {/* <div className="card text-center shadow-lg grow m-1" style={{width: '18rem' ,height:'14rem'}}>
-      
-           <div className="card-body">
-              <div className='card-header text-white border border-dark' style={{fontFamily:'cursive'}}>Valuers/Estate Mgt</div>
-             <p className="card-text text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-             <a href="#" className="btn btn-primary">Contact a Valuer...</a>
-           </div>
-         </div> */}
-           </div>
-           <div className ='col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'>
-           <div className="card text-center shadow-lg grow m-1 justify-content-center" style={{width: '18rem',height:'14rem'}}>       
-           <div className="card-body">
-           <div className='card-header text-white border border-dark'style={{fontFamily:'cursive'}}>Link-Ups</div>
-             <p className="card-text text-white">We specialize in finding you reliabe  homes at your very convinience </p>
-             <Link href="#" className="btn btn-primary">Contact an Agent...</Link>
-           </div>
-         </div>
-           </div>
-           <div className = 'col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'>
-           {/* <div className="card text-center shadow-lg grow m-1" style={{width: '18rem',height:'14rem'}}>
-             
-           <div className="card-body">
-           <div className='card-header text-white  border border-dark' style={{fontFamily:'cursive'}}>Property Sales</div>
-             <p className="card-text text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-             <a href="#" className="btn btn-primary">Contact a Sales Agent...</a>
-           </div>
-         </div> */}
-
-           </div>
-         </div>
-      </div>
-   </div>
+const Services =()=>{
+  return(
+         <div>
+            <div className='container'>
+            <div className='row'>
+                <div className='col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'></div>
+                <div className='col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'>
+                <h3 className='text-center m-3 text-info bolder'>SERVICES</h3>
+                </div>
+                <div className='col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'></div>
+              </div>
+              <div className='row'>
+              
+                <div className='col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center'>
+                <div className='m-4'>
+                <div className="bg-info rounded text-white grow">
+                <img src="img/services/s1.png" alt="" />
+                <h4>LINK UPs</h4>
+                <hr className="hl" />
+                <h5>Creating link ups between Agents and Customers</h5>
+                <Link to="/services" className='btn btn-sm btn-primary m-4'>Learn More</Link>
+              </div>
+                </div>
+                
+                </div>
+                <div className='col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center'>
+                  <div className='m-4'>
+                  <div className="bg-info rounded text-white">
+                <img src="img/services/s1.png" alt="" />
+                <h4>PROPERTY ADVERT</h4>
+                <hr className="hl" />
+                <h5>Dont know to go about it?, Place your Advert with us..</h5>
+                <a href="#" className="btn btn-sm btn-primary m-4">Learn More</a>
+              </div>
+                  </div>
+                </div>
+                <div className='col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center'>
+                  <div className='m-4'>
+                  <div className="bg-info rounded text-white">
+                <img src="img/services/s1.png" alt="" />
+                <h4>MARKETING</h4>
+                <hr className="hl" />
+                <h5>Good Marketing makes the company look smart... Great Marketing makes the customer feel smart!</h5>
+                <a href="#" className="btn btn-sm btn-primary m-4">Learn More</a>
+              </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
   );
+  
 
 
  }

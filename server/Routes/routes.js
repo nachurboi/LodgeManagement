@@ -58,21 +58,32 @@ const upload1 = multer({
 
 
 router.post('/apartment', upload.single('photo'), async (req, res)=> {
- try {
+
+        // 
+
+ try { 
+
+  const apartmentExist = await Apartment.findOne({address:req.body.address});
+
   if(!req.body.apartment || !req.body.address || !req.body.city || !req.body.phonenumber){
-   res.json({Message:"Enter the correct information"})
+   
+    res.json({message:"Fill in the required information"})
+
+  }else if(apartmentExist){
+    res.json({message:'apartment already exists'})
   }
   else if(req.file ==='' || req.file === undefined){
-    console.log(req.file)
-    res.json({Message:'No image selected'})
+  
+    res.json({message:'No image selected'})
   }
   else{
+
    let img = req.file.path;
    const result = await cloudinary.uploader.upload(img)
    let imgUrl = result.secure_url;
 
    const info =  await Apartment.create({
-     typeofapartment:req.body.typeofapartment,
+     apartment:req.body.apartment,
      address:req.body.address,
      city:req.body.city,
      phonenumber:req.body.phonenumber, 
@@ -81,13 +92,13 @@ router.post('/apartment', upload.single('photo'), async (req, res)=> {
         info.photo = imgUrl
       
         await info.save();
-        res.json({ Message:"success"
+
+        res.json({ message:"APARTMENT REGISTERED SUCCESSFULLY"
     })
   }
   
   
  } catch (error) {
-   console.log(error)
  }
  
 })
@@ -116,27 +127,37 @@ router.put('/update/apartment/:id', apartment.updateApartment);
 //create a new user
 router.post('/register',upload1.single('photo'), async (req,res)=>{
   try {
-    //checking for existing emails
-        const userExist = await user.findOne({email:req.body.email})
-        const emailExist = userExist.email;
-        
-        
-      if(!req.body.firstname|| !req.body.lastname || !req.body.password || !req.body.number || !req.body.email){
-          res.json({message:"fill in the required information"})
-      }
-      else if(req.file ==='' || req.file === undefined){
-        
-        console.log("no image selected")
-      }else if(emailExist){
+    //checking for existing emails and number during registration
+        const userEmailExist = await user.findOne({email:req.body.email})
+        const userNumberExist = await user.findOne({number:req.body.number})
 
-        res.json({
+        // console.log(emailExist.data)
+        
+  
+        
+        
+      if(!req.body.firstname|| !req.body.lastname || !req.body.password || !req.body.number || !req.body.email){         
+        res.json({message:"fill in the required information"})
 
-          message:'The email you entered exists'
+      }else if(userNumberExist){
+
+        res.json({message:'Number already Exists'})
+
+      }else if(userEmailExist){
+
+          res.json({
+                    message:"The email you entered Exists"
         })
+      }
+      else if(req.file ===''|| req.file === undefined){
+  
+        res.json({ message:"No Photo Selected"})
       }
       else{
        let img = req.file.path;
+       
        const result = await cloudinary.uploader.upload(img)
+
        let imgUrl = result.secure_url;
 
        const hash = bcrypt.hashSync(req.body.password,10)
@@ -156,7 +177,7 @@ router.post('/register',upload1.single('photo'), async (req,res)=>{
       
       
      } catch (error) {
-       console.log(error)
+       
      }
  });
 

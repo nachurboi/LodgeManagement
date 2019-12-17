@@ -10,12 +10,12 @@ import axios from 'axios'
   };
  }
  componentWillMount(){
-  axios.get('http://localhost:1000/alluser')
- .then(res=>{
-   this.setState({alluser:res.data.info})
-   console.log(this.state.alluser)
+//   axios.get('http://localhost:1000/alluser')
+//  .then(res=>{
+//    this.setState({alluser:res.data.info})
+//    console.log(this.state.alluser)
    
-  })
+//   })
 }
 
  render() {
@@ -23,7 +23,7 @@ import axios from 'axios'
    <div>
        <div className=" grow tc bg-light-green dib br3 ma2 " style={{width: '18rem'}}>
   
-  <img src='' className="card-img-top" alt=" " />
+  <img src='' className="card-img-top" alt="img" />
       <div className="card-body">
     {/* <p>City: {city}</p> */}
     {/* <p>Adress: {address}</p> */}

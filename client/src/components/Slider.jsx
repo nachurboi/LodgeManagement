@@ -62,7 +62,7 @@ export default class Slider extends Component {
             </div>
             <div className="carousel-caption">
               <button className='btn btn-sm btn-secondary' >
-              <Link class='text-white nav-link' to='/login'>See More...</Link>
+              <Link className='text-white nav-link' to='/login'>See More...</Link>
               </button>
               <p> Already Well furnihsed 4 bedroom flat</p>
             </div>
@@ -75,7 +75,7 @@ export default class Slider extends Component {
             </div>
             <div className="carousel-caption">
                 <button className='btn btn-sm btn-secondary' >
-                <Link class='text-white nav-link' to='/login'>See More. . .</Link>
+                <Link className='text-white nav-link' to='/login'>See More. . .</Link>
                 </button>
                  <p>Already furnihsed 4 bedroom flat</p>
             </div>
@@ -87,7 +87,7 @@ export default class Slider extends Component {
               <div className="mask rgba-black-light" />
             </div>
             <div className="carousel-caption">
-            <button className='btn btn-sm btn-secondary' ><Link class='text-white nav-link' to='/login'>See More...</Link></button>
+            <button className='btn btn-sm btn-secondary' ><Link className='text-white nav-link' to='/login'>See More...</Link></button>
               <p>Already furnihsed 6 bedroom flat</p>
             </div>
           </div>
