@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 
+// mongoose.set({useFindAndModify:false})
+
 const router = require('./Routes/routes')
 
 app.use(cors());
@@ -25,7 +27,7 @@ app.listen(port, ( req, res ) => {
     
 })
 
-const db=mongoose.connect('mongodb://localhost:27017/lodgemanagement', { useUnifiedTopology: true, useNewUrlParser: true });
+const db=mongoose.connect('mongodb://localhost:27017/lodgemanagement',{ useFindAndModify:false, useUnifiedTopology: true, useNewUrlParser: true });
 
 
 

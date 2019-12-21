@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
+import CommentBox from './CommentBox';
 
 
 class SideBar extends Component {
@@ -42,7 +43,7 @@ class SideBar extends Component {
         
          <div className='card-header text-white bg-secondary text-center shadow'>Welcome,{this.state.firstname.toUpperCase()}</div>
          <div className=' card-body overflow-auto'>
-         <div className='m-1'> <div className='overflow-hidden vh-25 text-center'><img src={this.state.photo}  className="card-img-top"  alt="img" /></div> 
+         <div className=''> <div className='overflow-hidden text-center rounded'><img src={this.state.photo} style={{width:'150px', height:'150px'}}  className="card-img-top"  alt="img" /></div> 
          </div>
         {!this.state.isLoading?
           <Link className='text-white ' to='/addhouse'>
@@ -57,7 +58,6 @@ class SideBar extends Component {
           <p className="text-info">Number:{this.state.number}</p>
           <p className="text-info">Email: {this.state.email}</p>
        </div>
-        
          </div>
       </div>
       </div>

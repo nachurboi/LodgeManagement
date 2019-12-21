@@ -1,10 +1,7 @@
-.avatar{
-  background-image: url(./Taiye.jpg);
-  background-size: cover;
-  background-position: center;
-
+#header{
 
 }
-/* .avatar-body{
-  margin-top: -50px;
-} */
+.breadcrumb{
+background-color: #cccccc;
+color: #333333;
+}

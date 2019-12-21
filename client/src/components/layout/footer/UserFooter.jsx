@@ -14,8 +14,8 @@ componentDidMount(){
  render() {
   return (
    <div className=''>
-     <footer className="page-footer font-small special-color-dark pt-4 bg-info ">
-        <div className="footer-copyright text-center py-3 text-white"> Taeb Concept Copyright © {new Date().getFullYear()}, All right reserved: </div>
+     <footer className="page-footer font-small special-color-dark pt-4 bg-secondary sticky-footer">
+        <div className="footer-copyright text-center py-3 text-white"> Taeb Concept,© {new Date().getFullYear()} All right reserved: </div>
       </footer>
    </div>
   ); 

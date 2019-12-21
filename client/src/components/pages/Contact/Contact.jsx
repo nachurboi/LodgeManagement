@@ -14,7 +14,7 @@ export default class Contacts extends Component {
     return (
       <div className='mt-5'>
          <div className='' style={{}}>
-      <div className="card m-auto bg-info mt-5" style={{width: '18rem'}}>
+      <div className="card m-auto bg-info mt-5" style={{width: '80%'}}>
          <div className="card-body ">
            <h2 className="card-title text-white border-bottom border-dark ">Contact Admin</h2>
            <div>

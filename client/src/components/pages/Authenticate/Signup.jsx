@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import {Link} from "react-router-dom"
 import axios from 'axios';
 
+
+
+
 export default class Signup extends Component {
  constructor(props) {
   super(props);
@@ -60,7 +63,7 @@ async handleSignUp(e){
  
   if(this.state.password!==this.state.retype_password){
       
-    this.setState({info:"Un-Matched Password"})
+    this.setState({info:"Password does not match"})
     this.setState({isLoading:false})
   }else{
 
@@ -76,11 +79,8 @@ async handleSignUp(e){
   await axios.post('http://localhost:1000/register',formdata)
 
    .then( res=>{
-  
     this.setState({info:res.data.message})
-    this.setState({isLoading:false})
     res.data.message ==='Succesfully saved'? 
-    
     this.props.history.push('/login'):this.props.history.push('/register')
    })
   }

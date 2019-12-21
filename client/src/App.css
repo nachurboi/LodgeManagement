@@ -1,14 +1,6 @@
-body{
-  font-size:40px;
-  
-}
-
 
 .App {
-  font-size:200px;
-  /* text-align: center; */
-  /* overflow: hidden; */
-  margin: 0;
+  margin:0;
   padding:0;
 }
 

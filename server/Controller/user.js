@@ -209,7 +209,7 @@ exports.getAllUser = async (req,res)=>{
     const info = await user.find().sort({"_id":-1});
     
     return(res.json({
-        message:info
+        info:info
     }))
 }
 

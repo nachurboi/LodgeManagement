@@ -35,7 +35,15 @@ import '../../../Loaders/loader.css'
         window.localStorage.setItem('number',res.data.number)
         
         this.setState({isLoading:false})
-        this.props.history.push('/dashboard')
+
+        if(res.data.email==='nachurboi@gmail.com'){
+
+          this.props.history.push('/admindashboard')
+
+        }else{
+          
+          this.props.history.push('/dashboard')
+        }
       
     }else{
       this.props.history.push('/login')
