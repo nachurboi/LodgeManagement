@@ -1,11 +1,11 @@
 import React from 'react';
-import {Link}  from 'react-router-dom'
-
+import {Link}  from 'react-router-dom';
+import  SearchBox from '../../SearchBox'
 const AdminHeader = ({handleLogOut})=>{
  return(
   <div>
       <nav className="navbar navbar-expand-md navbar-dark bg-info" style={{fontFamily:'cursive',minHeight:'100px'}}>
-        <a className="navbar-brand" href="#" style={{fontFamily:'cursive',fontSize:'30px'}}>HOUSIFY</a>
+        <Link className="navbar-brand"  to="landingpage" style={{fontFamily:'cursive',fontSize:'30px'}}>HOUSIFY</Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
@@ -16,8 +16,7 @@ const AdminHeader = ({handleLogOut})=>{
             </li>
           </ul>
           <form className="form-inline my-2 my-lg-0">
-            <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-primary my-2 my-sm-0" type="submit">Search For User</button>
+            <SearchBox/>
           </form>
         </div>
       </nav>

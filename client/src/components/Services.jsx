@@ -1,6 +1,5 @@
 import React from 'react'
-import './services.css'
-import {Link} from 'react-router-dom'
+import './services.css';
  
 const Services =()=>{
   return(
@@ -9,7 +8,7 @@ const Services =()=>{
             <div className='row'>
                 <div className='col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'></div>
                 <div className='col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'>
-                <h3 className='text-center m-3 text-dark bolder' style={{fontFamily:'cursive',fontSize:'bold'}}>SERVICES</h3>
+                <h3 className='text-center m-3 text-info bolder' style={{fontFamily:'cursive',fontSize:'bold'}}>SERVICES</h3>
                 </div>
                 <div className='col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4'></div>
               </div>

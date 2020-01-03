@@ -10,7 +10,8 @@ const user = require('../Models/user')
 const bcrypt = require('bcryptjs')
 const mailer = require('nodemailer')
 const user_Complaint = require('../Controller/user_complains')
-const emailExitence = require('email-existence')
+const emailExistence = require('email-existence');
+const  emailValidator = require('validator');
 
 
 
@@ -65,9 +66,7 @@ const upload1 = multer({
 
 
 
-router.post('/apartment', upload.single('photo'), async (req, res)=> {
-
-        // 
+router.post('/apartment', upload.single('photo'), async (req, res)=> { 
 
  try { 
 
@@ -101,12 +100,13 @@ router.post('/apartment', upload.single('photo'), async (req, res)=> {
       
         await info.save();
 
-        res.json({ message:"APARTMENT REGISTERED SUCCESSFULLY"
+        res.json({ message:"Registered Successfully"
     })
   }
   
   
  } catch (error) {
+   res.json({message:error})
  }
  
 })
@@ -137,6 +137,14 @@ router.post('/register',upload1.single('photo'), async (req,res)=>{
     //checking for existing emails and number during registration
         const userEmailExist = await user.findOne({email:req.body.email})
         const userNumberExist = await user.findOne({number:req.body.number})
+        const emailExistOnline = await emailExistence(req.body.email,(fail, success)=>{
+          if(fail){comsole}
+        })
+        //  emailExistence.check(req.body.email , (err, res)=>{
+        //   if(err){
+        //     res.json({message:err})
+        //   }else{ res.json( success)}
+        // });
     
 
         // console.log(emailExist.data)
@@ -145,31 +153,35 @@ router.post('/register',upload1.single('photo'), async (req,res)=>{
         
         res.json({message:"fill in the required information"})
 
-      }else if(userNumberExist){
-
-        res.json({message:'Number already Exists'})
-
-      }else if(userEmailExist){
-
-          res.json({message:"The email you entered Exists"})
-
-      }else if(req.body.password.length < 6 ){
-
-        res.json({message:'Your password is too short'})
-
-      }else if(req.body.password.length > 16){
-
-        res.json({message:'Your password is too long'})
-
-      }else if(req.body.lastname.length > 12){
-
-        res.json({message:'The lastname is too long'})
-
       }else if(req.body.firstname.length >15){
 
         res.json({message:'The firstname is too long'})
 
-      }else if(req.body.number.length !==11){
+      }else if(req.body.lastname.length > 15){
+
+        res.json({message:'The lastname is too long'})
+
+      }else if(emailExistOnline){
+
+             res.json({message:"The email does not exist"}),console.log( emailExistOnline)
+
+      }else if(userEmailExist){
+
+        res.json({message:"The email you entered Exists"})
+
+      }else if(req.body.password.length < 6 ){
+
+      res.json({message:'Your password is too short'})
+
+    }else if(req.body.password.length > 16){
+
+      res.json({message:'Your password is too long'})
+
+    }else if(userNumberExist){
+
+      res.json({message:'Number already Exists'})
+
+    }else if(req.body.number.length !==11){
 
         res.json({message:'incorrect mobile number'})
 
@@ -260,7 +272,8 @@ router.get('/alluser', userController.getAllUser)
 router.post('/complaints',user_Complaint.complains_controller);
 
 router.get('/allcomplaint',user_Complaint.getAllComplaints)
-  
+
+router.delete('/del/complaint/:id',user_Complaint.deleteSinglelComplaints)
 
 
 

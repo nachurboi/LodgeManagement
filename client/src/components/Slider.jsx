@@ -1,47 +1,23 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-// import GalleryCard from './GalleryCard'
-import Axios  from 'axios';
-
-// import Img1 from '../img/img1.jpg'
-// import Img2 from '../img/img2.jpg'
-// import Img3 from '../img/img3.jpg'
-// import GalleryCards from './GalleryCard'
-// import { log } from 'util';
-
+import axios  from 'axios';
 
 export default class Slider extends Component {
- constructor(props) {
+ constructor(props,{photo}) {
   super(props);
   this.state = {
     allapartment:[],
-    apartment_photo:[]
+    apartment_photo:[],
+    img:[]
   };
  }
  componentDidMount(){
-
-  Axios.get('http://localhost:1000/allhouse')
-
-  .then(res=>{
-    this.setState({allapartment:res.data.allapartment})
-    // this.setState({apartment_photo:res.data.allapartment[0].photo})
-      const{allapartment,apartment_photo} = this.state;
-      allapartment.map((photos,index)=>{
-          return( 
-            this.setState({apartment_photo:apartment_photo.push(photos.photo)})
-            // this.state.apartment_photo.push(photos.photo)
-          )
-      
-      })
-
-    // console.log(apartment_photo)
-    
-   }) 
-   
+  axios.get('http://localhost:1000/allapartment')
+  .then(res =>{this.setState({allapartment:res.data.message})})
  }
- render() {
-   
 
+ render() {
+   console.log(this.state.img)
   return (
    <div className=' mt-4'>
       {/*Carousel Wrapper*/}
@@ -57,11 +33,11 @@ export default class Slider extends Component {
         <div className="carousel-inner" role="listbox">
           <div className="carousel-item active">
             <div className="view">
-              <img className="d-block w-100" src={"https://res.cloudinary.com/taiwohassan/image/upload/v1575893079/vunfnywnx2ejelgp1gje.jpg"}height='600px' alt="First slide" />
+              <img className="d-block w-100" src={"https://res.cloudinary.com/taiwohassan/image/upload/v1575893079/vunfnywnx2ejelgp1gje.jpg"}height='600px' alt="img" />
               <div className="mask rgba-black-light" />
             </div>
             <div className="carousel-caption">
-              <button className='btn btn-sm btn-secondary' >
+              <button className='btn btn-sm btn-info'>
               <Link className='text-white nav-link' to='/login'>See More...</Link>
               </button>
               <p> Already Well furnihsed 4 bedroom flat</p>
@@ -70,11 +46,11 @@ export default class Slider extends Component {
           <div className="carousel-item">
             {/*Mask color*/}
             <div className="view">
-              <img className="d-block w-100" src={"https://res.cloudinary.com/taiwohassan/image/upload/v1575730238/gpgomwhjiroioalh8uzz.jpg" }height='600px'alt="Second slide" />
+              <img className="d-block w-100" src={this.props.photo}height='600px'alt='img' />
               <div className="mask rgba-black-light" />
             </div>
             <div className="carousel-caption">
-                <button className='btn btn-sm btn-secondary' >
+                <button className='btn btn-sm  bg-info btn-info' >
                 <Link className='text-white nav-link' to='/login'>See More. . .</Link>
                 </button>
                  <p>Already furnihsed 4 bedroom flat</p>
@@ -87,7 +63,7 @@ export default class Slider extends Component {
               <div className="mask rgba-black-light" />
             </div>
             <div className="carousel-caption">
-            <button className='btn btn-sm btn-secondary' ><Link className='text-white nav-link' to='/login'>See More...</Link></button>
+            <button className='btn btn-sm btn-info' ><Link className='text-white nav-link' to='/login'>See More...</Link></button>
               <p>Already furnihsed 6 bedroom flat</p>
             </div>
           </div>

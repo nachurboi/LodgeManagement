@@ -3,8 +3,6 @@ import {Link} from "react-router-dom"
 import axios from 'axios';
 
 
-
-
 export default class Signup extends Component {
  constructor(props) {
   super(props);
@@ -102,12 +100,12 @@ async handleSignUp(e){
  render() {
   
   return (
-   <div className='mt-4 mb-4'>
+   <div >
    <div className='row'>
    <div className=' col-sm-3 col-md-4 col-lg-3 col-xl-3'></div>
     <div className=' col-sm-6 col-md-6 col-lg-6 col-xl-6'>
-    <div className="Container bg-light vh-100">
-<form className="text-center border border-light p-4" action="#!">
+    <div className="container bg-light  mt-4 mb-4">
+<form className="text-center border border-light " >
             
         <p className="h6 mb-4 bg-info rounded text-white p-2">Sign up</p>
         <div className="form-row mb-4 ">
@@ -141,41 +139,34 @@ async handleSignUp(e){
          value={this.state.number}
           onChange={this.handleNumber.bind(this)} />
           {/*  photo */}
-          <div className="form-group mt-2 mb-2" enctype="multipart/form-data">
-                        <label htmlFor="exampleFormControlFile1" className='text-info text-center border-bottom'>Upload a photo</label>
-                        <input type="file" className="form-control-file rounded" id="exampleFormControlFile1" onChange={this.handlePhoto.bind(this)}/>
-                     </div>
-          {/* photo end */}
-        <small id="defaultRegisterFormPhoneHelpBlock" className="form-text text-muted mb-4">
-          Optional - for two step authentication
-        </small>
-      
+          <div className='row'>
+          <div className='col-sm-3 '></div>
+<div className='col-sm-6 '>
+<div className="form-group " enctype="multipart/form-data">
+                        <label htmlFor="exampleFormControlFile1" className='text-info text-center border-bottom m-2'>Upload a photo</label>
+                        <input type="file" className="form-control-file rounded " id="exampleFormControlFile1" onChange={this.handlePhoto.bind(this)}/>
+                     </div>     
+</div>
+<div className='col-sm-3'></div>
+    </div>                
+     {/* photo */}
         { this.state.info !==''? 
         <div className='alert alert-danger'>{this.state.info}</div> : <div></div>}
 
-        {this.state.isLoading?<div className='loader'></div>:<button className="btn btn-info my-4 " onClick={this.handleSignUp.bind(this)}>Sign Up</button>}
-        {this.state.isLoading?<div className='btn btn-md btn-info' onClick={this.handleCancel.bind(this)}>Cancel</div>:<div></div>}
+        {this.state.isLoading?<div className='loader'></div>:<button className="btn btn-info  " onClick={this.handleSignUp.bind(this)}>Sign Up</button>}
+        {this.state.isLoading?<div className='btn  btn-md  btn-info'
+         onClick={this.handleCancel.bind(this)}>Cancel</div>:<div></div>}
 
-
-        {/* Social register */}
-
-        <p>Or Sign Up With:</p>
-        <Link to="#" className="mx-2" role="button"><i className="fab fa-facebook-f light-blue-text" /></Link>
-        <Link to="#" className="mx-2" role="button"><i className="fab fa-twitter light-blue-text" /></Link>
-        <Link to="#" className="mx-2" role="button"><i className="fab fa-linkedin-in light-blue-text" /></Link>
-        <Link to="#" className="mx-2" role="button"><i className="fab fa-github light-blue-text" /></Link>
         <hr />
         {/* Terms of service */}
         <p>By Clicking 
           <em> Sign Up </em> you agree to our
           <Link to target="_blank"> terms of service</Link>
-        </p></form>
+        </p>
+        </form>
         </div>
         <div className=' col-sm-3 col-md-3 col-lg-3 col-xl-3'></div>
-    </div>
-
-
-    
+    </div>    
       </div>
    </div>
   );

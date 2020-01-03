@@ -10,13 +10,8 @@ exports.getAllApartment = async (req,res)=>{
  if(!info) return res.json({message:`error users not found`})
 
 else{
-    const address = info.address
-    
      res.json({
-         message:info, 
-         address:address
-         
-    
+         message:info
 
 })}
 }

@@ -1,0 +1,12 @@
+{
+   "editor.lineHeight": 20,
+   "editor.suggestLineHeight": 15,
+   "editor.tabSize": 10,
+   "prettier.useTabs": true,
+   "editor.renderWhitespace": "all",
+   "editor.suggest.shareSuggestSelections": true,
+   "liveServer.settings.useBrowserPreview": true,
+   "workbench.settings.openDefaultSettings": true,
+   "diffEditor.ignoreTrimWhitespace": false,
+   "screencastMode.verticalOffset": 10
+}

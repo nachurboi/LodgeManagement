@@ -59,10 +59,16 @@ import '../../../Loaders/loader.css'
 
  render() {
   return (
-   <div style={{height:'700px'}} className='mt-4 mb-4'>
-    
-    <div className="card bg-info m-auto" style={{height:"50%",width:'50%'}}>
-            <div className="card-header text-center bg-info">
+   <div >
+ <div className='container bg-light '>
+    <div className='row'>
+      <div  className='col-sm-2'></div>
+      <div  className=' col-xs-12  col-sm-8 ' >
+      <div className='text-center bg-light m-4'>
+        <div className="row">
+          <div className="col-sm-12">
+          <div className="card bg-light mt-3 mb-5 p-4" >
+            <div className="card-header text-center text-white bg-info">
               <h3>Login</h3></div>
             <div className="card-body bg-light">
               <form>
@@ -70,7 +76,7 @@ import '../../../Loaders/loader.css'
                   <div className="input-group-prepend ">
                     <span className="input-group-text bg-info"><i className="fas fa-user" /></span>
                   </div>
-                  <input type="email" className="form-control p-4" placeholder="username" required  id="userlogin"  value ={this.state.email}onChange={this.emailHandle.bind(this)} style={{fontSize:'30px'}}/>
+                  <input type="email" className="form-control p-4" placeholder="username" required  id="userlogin"  value ={this.state.email}onChange={this.emailHandle.bind(this)} />
                 </div>
                 <div className="input-group form-group mt-4 mb-4">
                   <div className="input-group-prepend">
@@ -78,7 +84,7 @@ import '../../../Loaders/loader.css'
                   </div>
                   <input type="password" className="form-control p-4" placeholder="password" required id="passuser" value={this.state.password} onChange={this.passwordHandle.bind(this)} />
                 </div>
-                {this.state.info !== ""?<div className='alert alert-danger'>{this.state.info}</div>:<div></div>}
+                {this.state.info !== ""?<div className='alert alert-danger  '>{this.state.info}</div>:<div></div>}
 
                 {this.state.isLoading===true?<div className='loader ml-auto'></div>: <div className="form-group bg-primary">
               
@@ -88,14 +94,22 @@ import '../../../Loaders/loader.css'
             </div>
             <div className="card-footer bg-light">
               <div className="d-flex justify-content-center links text-dark">
-                Don't have an account?<Link to='/signup' className="text-primary hover">Sign Up</Link>
+                Don't have an account ?,   <Link to='/signup' className="text-primary hover">Sign Up</Link>
               </div>
               <div className="d-flex justify-content-center text-dark">
-                <Link to='/passwordreset' className="text-danger">Forgot Your Password?</Link>
+                <Link to='/passwordreset' className="text-danger">Forgot Your Password? </Link>
               </div>
             </div>
           </div>
-   </div>
+          </div>
+        </div>
+      {/* </div> */}
+      </div>
+      </div>
+      <div  className='col-sm-2'></div>
+    </div>
+</div>
+</div>
   );
   
  }

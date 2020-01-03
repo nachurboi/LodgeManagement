@@ -19,7 +19,8 @@ async commentHandler(e){
       e.preventDefault();
       this.setState({isLoading:true})
 
-  const user_message =  await axios.post('http://localhost:1000/complaints',this.state)
+  // const user_message =  
+  await axios.post('http://localhost:1000/complaints',this.state)
     .then(res=>{
     
       this.setState({message:res.data.message})
@@ -31,13 +32,13 @@ async commentHandler(e){
 }
 
  render() {
-  return (
+  return ( 
    <div>
         <div style={{height:'30px'}}>
           <form>
-            <div class="form-group">
-                  <label for="exampleFormControlTextarea1" className="text-success mt-2" style={{fontFamily:'cursive',fontSize:'25px'}}>Suggestion Box</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style={{maxHeight:'200px', minHeight:'100px'}} onChange={this.handleCommentChanger.bind(this)} value={this.state.complain}></textarea>
+            <div className="form-group">
+                  <label  className="text-success mt-2" style={{fontFamily:'cursive',fontSize:'25px'}}>Suggestion Box</label>
+                  <textarea className="form-control"  rows="3" style={{maxHeight:'200px', minHeight:'100px'}} onChange={this.handleCommentChanger.bind(this)} value={this.state.complain}></textarea>
             </div>
             { this.state.message?<div className='alert alert-danger'>{this.state.message}</div>:<div></div> }
             <div>

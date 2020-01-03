@@ -22,6 +22,7 @@ exports.complains_controller = async (req,res)=>{
 
 
 }
+//get all complains
 exports.getAllComplaints = async (req, res)=>{
 
   const info = await complaints.find().sort({"_id":-1})
@@ -29,4 +30,12 @@ exports.getAllComplaints = async (req, res)=>{
     info:info
   })
 
+}
+// seleye a single conplain
+
+exports.deleteSinglelComplaints =  async( req, res)=>{
+  const info = await  complaints.findOneAndRemove({_id:req.params.id})
+  res.json({
+    mesage:'complain deleted successfully'
+  })
 }

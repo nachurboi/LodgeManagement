@@ -27,7 +27,7 @@ export default class UserTableList extends Component {
    const {alluser} = this.state
    
   return (
-     <div>
+     <div className='overflow-auto' style={{height:'600px'}}>
        {!alluser ? <div>Users Loading...</div> : alluser.map((user,i)=>{
          const {_id,firstname,lastname,email,number,password,photo}= user;
          return <UserTable id={_id} firstname ={firstname} lastname={lastname} email={email}number={number} password={password} photo={photo} sn={i+1} />

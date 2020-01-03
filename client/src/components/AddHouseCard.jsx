@@ -59,12 +59,13 @@ export default class AddHouseCard extends Component {
       formdata.append("city",this.state.city);
       formdata.append("phonenumber",this.state.phonenumber);
       formdata.append("address",this.state.address);
-      formdata.append("apartment",this.state.typeofapartment);
+      formdata.append("apartment",this.state.apartment);
        await axios.post('http://localhost:1000/apartment',formdata)
        .then( res=>{
         this.setState({message:res.data.message})
-        res.data.message ==='APARTMENT REGISTERED SUCCESSFULLY'? this.props.history.push('/dashboard'):this.props.history.push('/addhouse')
-        this.setState({isLoading:false})
+        res.data.message ==='Registered Successfully'? this.props.history.push('/dashboard')
+        :this.props.history.push('/addhouse')
+        // this.setState({isLoading:false})
        })
        
        
@@ -120,8 +121,8 @@ export default class AddHouseCard extends Component {
             </div>
 
            </div>
-           {this.state.message?<div className='alert bg-danger text-center text-white mt-3'>
-              {this.state.message.toUpperCase()}</div>:<div></div>}
+           {this.state.message?<div className='alert alert-danger text-center text-dark'>
+              {this.state.message}</div>:<div></div>}
           </div>
           <div className='col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3'></div>
         </div>
